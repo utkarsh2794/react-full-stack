@@ -1,0 +1,12 @@
+/node_modules
+
+# IDE - VSCode
+.vscode/*
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# e2e
+/e2e/*.js
+/e2e/*.map

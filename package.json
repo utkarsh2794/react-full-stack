@@ -1,0 +1,14 @@
+{
+  "name": "node-demo",
+  "version": "1.0.0",
+  "description": "\"\"\u001b[Dthis is the git and node basic learning project\"",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.5.3"
+  }
+}
