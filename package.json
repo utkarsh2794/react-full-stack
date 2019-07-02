@@ -4,7 +4,8 @@
   "description": "\"\"\u001b[Dthis is the git and node basic learning project\"",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
   },
   "author": "",
   "license": "ISC",
