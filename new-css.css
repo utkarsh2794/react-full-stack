@@ -2755,7 +2755,7 @@ option[value=''][disabled] {
   }
 
   .breadcrumb .li {
-      width : 18%;
+      width : 33%;
   }
 
   span .breadcrumb .text {
@@ -2786,6 +2786,7 @@ option[value=''][disabled] {
       vertical-align: middle;
       display: inline-block;
       margin-top: inherit;
+      padding-left: 7%;
       width: -webkit-fill-available !important;
   }    
 
@@ -2801,6 +2802,25 @@ option[value=''][disabled] {
   .logoContainer {
       display : none;
   }
-  
+
+  .address-box li label {
+      display: inline-block;
+      width: 114px;
+      color: #bbb;
+      width: 64%;
+      line-height: 1.67;
+      color: #111111;
+  }
+
+  .address-box li span {
+    text-overflow: ellipsis;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .address-grid {
+
+  }
 /* //changes */
 }
