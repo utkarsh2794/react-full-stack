@@ -1,7 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+    CardTitle, Breadcrumb, BreadcrumbItem,Button,Row,Col,Label,Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Control, LocalForm, Errors } from "react-redux-form";
+
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
+
+class CommentForm extends Component{
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            isModalOpen: false
+        };
+        this.toggleModal = this.toggleModal.bind(this);
+      }
+
+      toggleModal() {
+            this.setState({
+                isModalOpen: !this.state.isModalOpen
+            });
+        }
+
+        render() {
+            return (<div>
+                <Button outline onClick={this.toggleModal}>
+                 <span className="fa fa-pencil" /> Submit Comment
+                </Button>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalBody>
+                        <LocalForm onSubmit={this.handleSubmit}>
+                            
+                            <Button type="submit" value="submit" color="primary">Submit</Button>
+                        </LocalForm>
+                    </ModalBody>
+                </Modal>
+            </div>);
+        }
+}
 
 
     function RenderDish({dish}) {
@@ -43,6 +82,7 @@ import { Link } from 'react-router-dom';
                         )
                     })					
 					}
+                    <CommentForm />
 				</div>
 			)
 		} else
