@@ -24,6 +24,8 @@
   "dependencies": {
     "bootstrap-social": "^5.1.1",
     "font-awesome": "^4.7.0",
-    "react-router-dom": "^4.2.2"
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2"
   }
 }
