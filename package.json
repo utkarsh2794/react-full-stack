@@ -20,5 +20,9 @@
   "homepage": "https://github.com/utkarsh2794/react-full-stack#readme",
   "devDependencies": {
     "lite-server": "^2.5.3"
+  },
+  "dependencies": {
+    "bootstrap-social": "^5.1.1",
+    "font-awesome": "^4.7.0"
   }
 }
