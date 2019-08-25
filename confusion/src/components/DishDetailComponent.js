@@ -16,6 +16,7 @@ class DishDetail extends Component {
         if(dish!= null && dish.comments!= null){
 			return (
                  <div  className="col-12 col-md-5 m-1">   
+                     <h4>Comments</h4>
 					{
                     dish.comments.map((comment) => {
                         return (
@@ -31,7 +32,11 @@ class DishDetail extends Component {
 					}
 				</div>
 			)
-		}
+		} else
+            return(
+                <div></div>
+            );
+
 	}
     
 
