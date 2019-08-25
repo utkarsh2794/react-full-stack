@@ -33,7 +33,59 @@ class CommentForm extends Component{
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
                     <ModalBody>
                         <LocalForm onSubmit={this.handleSubmit}>
-                            
+                            <Row className="form-group">
+                                <Label htmlFor="rating" md={12}>
+                                Rating
+                                </Label>
+                                <Col md={{ size: 12 }}>
+                                <Control.select model=".rating" name="rating" className="form-control">
+                                    <option>Good</option>
+                                    <option>Bad</option>
+                                    <option>Excellent</option>
+                                </Control.select>
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="author" md={12}>
+                                Author
+                                </Label>
+                                <Col md={12}>
+                                <Control.text
+                                    model=".author" id="author" name="author" placeholder="Your Name"
+                                    className="form-control" validators={{
+                                    required, minLength: minLength(3),maxLength: maxLength(15)
+                                    }}
+                                />
+                                <Errors
+                                    className="text-danger" model=".author" show="touched"
+                                    messages={{
+                                    required: "Required",
+                                    minLength: "Must be greater than 3 characters",
+                                    maxLength: "Must be 15 characters or less"
+                                    }}
+                                />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="comment" md={2}>comment</Label>
+                                <Col md={10}>
+                                    <Control.textarea model=".comment" id="comment" name="comment"
+                                        rows="6"
+                                        validators={{
+                                                    required, minLength: minLength(10)
+                                                }}
+                                        className="form-control" />
+                                        <Errors
+                                                className="text-danger"
+                                                model=".comment"
+                                                show="touched"
+                                                messages={{
+                                                    required: 'Required',
+                                                    minLength: 'Must be greater than 10 numbers'
+                                                }}
+                                            />
+                                </Col>
+                            </Row>
                             <Button type="submit" value="submit" color="primary">Submit</Button>
                         </LocalForm>
                     </ModalBody>
