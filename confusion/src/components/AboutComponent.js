@@ -22,7 +22,7 @@ function About(props) {
         );
     }
 
-    function RenderContent({ leaders, isLoading, errMess }) {
+    function RenderStagLeaders({ leaders, isLoading, errMess }) {
         if (isLoading) {
         return <Loading />;
         } else if (errMess) {
@@ -101,7 +101,7 @@ function About(props) {
                 </div>
                  <div className="col-12">
                     <Media list>
-                        <RenderContent
+                        <RenderStagLeaders
                             leaders={props.leader}
                             isLoading={props.leaderLoading}
                             errMess={props.leaderErrMess}
