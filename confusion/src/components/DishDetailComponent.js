@@ -4,6 +4,7 @@ import { Card, CardImg, CardText, CardBody,
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Loading } from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -107,6 +108,11 @@ class CommentForm extends Component{
     function RenderDish({dish}) {
         if (dish != null)
             return(
+                <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
                     <div>   
                     <Card>
                         <CardImg top src={dish.image} alt={dish.name} />
@@ -116,6 +122,7 @@ class CommentForm extends Component{
                         </CardBody>
                     </Card>
                 </div>  
+                </FadeTransform>
 
             );
         else
@@ -130,19 +137,23 @@ class CommentForm extends Component{
 			return (
                  <div>   
                      <h4>Comments</h4>
+                     <Stagger in>
 					{
                     comments.map((comment) => {
                         return (
                             <ul className ='list-unstyled' key = {comment.id}>
-                                <li>
-                                    <div>{comment.comment}</div>
-                                    <div>{`-- ${comment.author} , 
-                                        ${new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format()}`}</div>
-                                </li>
+                                <Fade in>
+                                    <li>
+                                        <div>{comment.comment}</div>
+                                        <div>{`-- ${comment.author} , 
+                                            ${new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format()}`}</div>
+                                    </li>
+                                </Fade>
                             </ul>
                         )
                     })					
 					}
+                    </Stagger>
                     <CommentForm dishId={dishId} addComment={addComment} />
 				</div>
 			)
