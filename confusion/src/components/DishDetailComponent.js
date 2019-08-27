@@ -18,6 +18,11 @@ class CommentForm extends Component{
         this.toggleModal = this.toggleModal.bind(this);
       }
 
+      handleSubmitModal(values){
+        this.toggleModal();
+        console.log('cureent state is',values);
+      }
+
       toggleModal() {
             this.setState({
                 isModalOpen: !this.state.isModalOpen
@@ -86,7 +91,7 @@ class CommentForm extends Component{
                                             />
                                 </Col>
                             </Row>
-                            <Button type="submit" value="submit" color="primary">Submit</Button>
+                            <Button type="submit" value="submit" color="primary" onSubmit={this.handleSubmitModal()}>Submit</Button>
                         </LocalForm>
                     </ModalBody>
                 </Modal>
@@ -116,7 +121,7 @@ class CommentForm extends Component{
     }
     
 
-   function RenderComments({comments}) {
+   function RenderComments({comments , addComment, dishId}) {
         if(comments!= null){
 			return (
                  <div>   
@@ -134,7 +139,7 @@ class CommentForm extends Component{
                         )
                     })					
 					}
-                    <CommentForm />
+                    <CommentForm dishId={dishId} addComment={addComment} />
 				</div>
 			)
 		} else
@@ -167,7 +172,8 @@ class CommentForm extends Component{
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={props.comments} />
+                        <RenderComments comments={props.comments} addComment={props.addComment}
+                                            dishId={props.dish.id} />
                     </div>
                 </div>
                 </div>
