@@ -16,6 +16,7 @@ class CommentForm extends Component{
             isModalOpen: false
         };
         this.toggleModal = this.toggleModal.bind(this);
+        this.handleSubmitModal = this.handleSubmitModal.bind(this);
       }
 
       handleSubmitModal(values){
@@ -24,6 +25,7 @@ class CommentForm extends Component{
       }
 
       toggleModal() {
+            console.log(this);
             this.setState({
                 isModalOpen: !this.state.isModalOpen
             });
@@ -91,7 +93,7 @@ class CommentForm extends Component{
                                             />
                                 </Col>
                             </Row>
-                            <Button type="submit" value="submit" color="primary" onSubmit={this.handleSubmitModal()}>Submit</Button>
+                            <Button type="submit" value="submit" color="primary">Submit</Button>
                         </LocalForm>
                     </ModalBody>
                 </Modal>
