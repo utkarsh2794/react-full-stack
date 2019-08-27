@@ -16,16 +16,15 @@ class CommentForm extends Component{
             isModalOpen: false
         };
         this.toggleModal = this.toggleModal.bind(this);
-        this.handleSubmitModal = this.handleSubmitModal.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-      handleSubmitModal(values){
+      handleSubmit(values){
         this.toggleModal();
-        console.log('cureent state is',values);
+        this.props.addComment(this.props.dishId,values.rating, values.author,values.comment)
       }
 
       toggleModal() {
-            console.log(this);
             this.setState({
                 isModalOpen: !this.state.isModalOpen
             });
@@ -45,10 +44,12 @@ class CommentForm extends Component{
                                 Rating
                                 </Label>
                                 <Col md={{ size: 12 }}>
-                                <Control.select model=".rating" name="rating" className="form-control">
-                                    <option>Good</option>
-                                    <option>Bad</option>
-                                    <option>Excellent</option>
+                                <Control.select id='rating' model=".rating" name="rating" className="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
                                 </Control.select>
                                 </Col>
                             </Row>
