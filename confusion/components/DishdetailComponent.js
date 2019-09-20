@@ -5,6 +5,8 @@ import { DISHES } from '../shared/dishes';
 
 class Dishdetail extends Component {
 
+    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -17,6 +19,26 @@ class Dishdetail extends Component {
     };
 
     render() {
+
+        function RenderDish(props) {
+
+            const dish = props.dish;
+            
+                if (dish != null) {
+                    return(
+                        <Card
+                        featuredTitle={dish.name}
+                        image={require('./images/uthappizza.png')}>
+                            <Text style={{margin: 10}}>
+                                {dish.description}
+                            </Text>
+                        </Card>
+                    );
+                }
+                else {
+                    return(<View></View>);
+                }
+            }
 
         
         const dishId = this.props.navigation.getParam('dishId','');
