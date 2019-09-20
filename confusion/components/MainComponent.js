@@ -52,7 +52,7 @@ const AboutNavigator = createStackNavigator(
 
 const MenuNavigator = createStackNavigator({
         Menu: { screen: Menu },
-        Dishdetail: { screen: Dishdetail }
+        DishDetail: { screen: Dishdetail }
     },
     {
         initialRouteName: 'Menu',
@@ -128,22 +128,22 @@ const MainNavigator = createDrawerNavigator({
           drawerLabel: 'About Us',
             drawerIcon: ({ tintColor, focused }) => (
               <Icon
-                name='info-circle'
-                type='font-awesome'            
-                size={24}
-                color={tintColor}
+                 name='list'
+                  type='font-awesome'            
+                  size={24}
+                  color={tintColor}
               />
             ),
         }
       },
     Menu: 
-        { screen: Menu,
+        { screen: MenuNavigator,
           navigationOptions: {
-            title: 'About',
-            drawerLabel: 'About Us',
+            title: 'Menu',
+            drawerLabel: 'Menu',
               drawerIcon: ({ tintColor, focused }) => (
                 <Icon
-                  name='list'
+                  name='info-circle'
                   type='font-awesome'            
                   size={24}
                   color={tintColor}
