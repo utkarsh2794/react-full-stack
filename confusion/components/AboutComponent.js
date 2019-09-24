@@ -61,6 +61,7 @@ class About extends Component {
               <History />
               <Card
                 title='Corporate Leadership'>
+                <Loading />
               </Card>
           </ScrollView>
       );
