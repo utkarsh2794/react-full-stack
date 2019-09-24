@@ -70,7 +70,7 @@ const AboutNavigator = createStackNavigator(
 
 const MenuNavigator = createStackNavigator({
         Menu: { screen: Menu },
-        DishDetail: { screen: Dishdetail }
+        Dishdetail: { screen: Dishdetail }
     },
     {
         initialRouteName: 'Menu',

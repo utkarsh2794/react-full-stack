@@ -6,6 +6,13 @@ import { COMMENTS } from '../shared/comments';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 
+const mapStateToProps = state => {
+    return {
+      dishes: state.dishes,
+      comments: state.comments
+    }
+  }
+
 
 function RenderComments(props) {
 
@@ -96,4 +103,4 @@ class Dishdetail extends Component {
     }
 }
 
-export default connect(mapStateToProps)(DishDetail);
+export default connect(mapStateToProps)(Dishdetail);
