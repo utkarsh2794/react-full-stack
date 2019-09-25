@@ -21,7 +21,6 @@ const mapStateToProps = state => {
 function RenderComments(props) {
 
     const comments = props.comments;
-    console.log(comments);
 
     const renderCommentItem = ({item, index}) => {
         
@@ -96,7 +95,6 @@ class Dishdetail extends Component {
 
         
         const dishId = this.props.navigation.getParam('dishId','');
-        console.log("dishid"+dishId);
         return(
             <ScrollView>
                 <RenderDish dish={this.props.dishes.dishes[+dishId]}
