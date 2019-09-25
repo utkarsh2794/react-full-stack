@@ -6,6 +6,7 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import Swipeout from 'react-native-swipeout';
 import { deleteFavorite } from '../redux/ActionCreators';
+import * as Animatable from 'react-native-animatable';
 
 const mapDispatchToProps = dispatch => ({
     deleteFavorite: (dishId) => dispatch(deleteFavorite(dishId))
@@ -41,6 +42,7 @@ class Favorites extends Component {
             ];
     
             return (
+                 <Animatable.View animation="fadeInRightBig" duration={2000}>   
                <Swipeout right={rightButton} autoClose={true}>
                     <ListItem
                         key={index}
@@ -51,6 +53,7 @@ class Favorites extends Component {
                         leftAvatar={{ source: {uri: baseUrl + item.image}}}
                         />
                 </Swipeout>
+                </Animatable.View>
             );
         };
 
