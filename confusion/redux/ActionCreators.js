@@ -33,14 +33,14 @@ export const addComments = (comments) => ({
 
 export const postComment = (dishid, rating, author, comment) => dispatch => {
   const newComment = {
-    dishId: dishId,
+    dishId: dishid,
     rating: rating,
     author: author,
     comment: comment,
     date : new Date().toISOString()
   };
   setTimeout(() => {
-    dispatch(addComment(newComment));
+    dispatch(addComments(newComment));
   }, 2000);
 };
 

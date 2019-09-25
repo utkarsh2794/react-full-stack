@@ -3,7 +3,7 @@ import { Text, View, ScrollView, FlatList, Modal, StyleSheet, Button, Alert, Pan
 import { Rating, Card, Input, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { postFavorite } from '../redux/ActionCreators';
+import { postFavorite,postComment } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
 
 
@@ -120,6 +120,11 @@ class Dishdetail extends Component {
                     return false;
             }
 
+            const recognizeComment = ({ dx }) => {
+                if (dx > 200) return true; // Left to right
+                return false;
+            };
+
             const panResponder = PanResponder.create({
                 onStartShouldSetPanResponder: (e, gestureState) => {
                     return true;
@@ -127,7 +132,7 @@ class Dishdetail extends Component {
                 onPanResponderGrant: () => {this.view.rubberBand(1000).then(endState => console.log(endState.finished ? 'finished' : 'cancelled'));},
                 onPanResponderEnd: (e, gestureState) => {
                     console.log("pan responder end", gestureState);
-                    if (recognizeDrag(gestureState))
+                    if (recognizeDrag(gestureState)){
                         Alert.alert(
                             'Add Favorite',
                             'Are you sure you wish to add ' + dish.name + ' to favorite?',
@@ -137,6 +142,9 @@ class Dishdetail extends Component {
                             ],
                             { cancelable: false }
                         );
+                    } else if (recognizeComment(gestureState)) {
+                        props.openCommentForm();
+                    }
 
                     return true;
                 }
