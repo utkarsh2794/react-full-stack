@@ -16,8 +16,8 @@ const mapStateToProps = state => {
 
   const mapDispatchToProps = dispatch => ({
     postFavorite: (dishId) => dispatch(postFavorite(dishId)),
-    postComment: (dishid, rating, author, comment) =>
-        dispatch(postComment(dishid, rating, author, comment))
+    postComment: (dishid, rating, author, comment) => dispatch(postComment(dishid, rating, author, comment)),
+
     })
 
 
@@ -86,16 +86,20 @@ class Dishdetail extends Component {
         title: 'Dish Details'
     };
 
-    postCommentAndRating() {
+    handleComment() {
         console.log(JSON.stringify(this.state));
         const author= this.state.author;
         const comment= this.state.comment;
-        const rating= this.state.userRating;
+        const rating= this.state.rating;
         const dishid = this.props.navigation.getParam("dishid", "");
 
         this.toggleModal();
         this.props.postComment(dishid, rating, author, comment);
     }
+
+    ratingCompleted = rating => {
+        this.setState({ rating });
+    };
     
 
     render() {
