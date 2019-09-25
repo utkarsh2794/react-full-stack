@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { DISHES } from '../shared/dishes';
-import { COMMENTS } from '../shared/comments';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite } from '../redux/ActionCreators';
@@ -23,7 +21,8 @@ const mapStateToProps = state => {
 function RenderComments(props) {
 
     const comments = props.comments;
-            
+    console.log(comments);
+
     const renderCommentItem = ({item, index}) => {
         
         return (
@@ -97,13 +96,14 @@ class Dishdetail extends Component {
 
         
         const dishId = this.props.navigation.getParam('dishId','');
+        console.log("dishid"+dishId);
         return(
             <ScrollView>
                 <RenderDish dish={this.props.dishes.dishes[+dishId]}
                     favorite={this.props.favorites.some(el => el === dishId)}
                     onPress={() => this.markFavorite(dishId)} 
                     />
-                <RenderComments comments={this.props.comments.comments.filter((comment) => comment.dishId === dishId)} />
+                <RenderComments comments={this.props.comments.comments.filter((comment) => comment.dishid === dishId)} />
             </ScrollView>
         );
     }
