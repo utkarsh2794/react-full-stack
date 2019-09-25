@@ -6,6 +6,7 @@ import { ScrollView, FlatList } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
+import * as Calendar from 'expo-calendar';
 
 class Reservation extends Component {
 
@@ -31,6 +32,17 @@ class Reservation extends Component {
         return permission;
     }
 
+    static async obtainCalendarPermission() {
+      let permission = await Permissions.getAsync(Permissions.CALENDAR);
+      if (permission.status !== 'granted') {
+        permission = await Permissions.askAsync(Permissions.CALENDAR);
+        if (permission.status !== 'granted') {
+          Alert.alert('Permission not granted to access the calendar');
+        }
+      }
+      return permission;
+    }
+
     async presentLocalNotification(date) {
         await this.obtainNotificationPermission();
         Notifications.presentLocalNotificationAsync({
@@ -45,6 +57,22 @@ class Reservation extends Component {
                 color: '#512DA8'
             }
         });
+    }
+
+    static async addReservationToCalendar(date) {
+      await Reservation.obtainCalendarPermission();
+      const startDate = new Date(Date.parse(date));
+      const endDate = new Date(Date.parse(date) + (2 * 60 * 60 * 1000)); 
+      Calendar.createEventAsync(
+        Calendar.DEFAULT,
+        {
+          title: 'Table Reservation',
+          location: 'gurgaon',
+          startDate,
+          endDate,
+        },
+      );
+      Alert.alert('Reservation has been added to your calendar');
     }
 
     toggleModal() {
@@ -84,7 +112,9 @@ class Reservation extends Component {
           {
             text: 'OK',
             // eslint-disable-next-line no-confusing-arrow, no-console
-            onPress: () => {this.presentLocalNotification(this.state.date);
+            onPress: () => {
+                Reservation.addReservationToCalendar(this.state.date);
+                Reservation.presentLocalNotification(this.state.date);
                 this.resetForm();
             }
           },
