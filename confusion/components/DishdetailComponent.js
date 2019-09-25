@@ -61,6 +61,15 @@ class Dishdetail extends Component {
         };
     }
 
+    resetForm() {
+        this.setState({
+        ratings: null,
+        author: '',
+        comment: '',
+        showModal: false
+        });
+    };
+
     openCommentForm = () => {
         this.setState({showModal: true})
     }
@@ -78,6 +87,7 @@ class Dishdetail extends Component {
     };
 
     postCommentAndRating() {
+        console.log(JSON.stringify(this.state));
         const author= this.state.author;
         const comment= this.state.comment;
         const rating= this.state.userRating;
@@ -86,6 +96,7 @@ class Dishdetail extends Component {
         this.toggleModal();
         this.props.postComment(dishid, rating, author, comment);
     }
+    
 
     render() {
 
@@ -137,63 +148,63 @@ class Dishdetail extends Component {
                 <RenderComments comments={this.props.comments.comments.filter((comment) => comment.dishid === dishId)} />
                 <ScrollView>
                     <Modal
-                    animationType={'slide'}
-                    transparent={false}
-                    visible={this.state.showModal}
-                    onDismiss={() => this.state.toggleModal()}
-                    onRequestClose={() => this.state.toggleModal()}
-                    >
-                    <View style={styles.modal}>
-                        <Rating
-                        showRating
-                        readonly={false}
-                        startingValue={this.state.rating}
-                        imageSize={20}
-                        style={{paddingVertical: 10, marginBottom: 30}}
-                        onFinishRating={(value) => this.setState({rating: value})}
-                        />
-                        <Input
-                        placeholder='Author'
-                        leftIcon={
-                            <Icon
-                            name='user-o'
-                            type='font-awesome'
-                            size={24}
-                            color='black'
+                        animationType={"slide"}
+                        transparent={false}
+                        visible={ this.state.showModal }
+                        onDismiss={ () => this.toggleModal() }
+                        onRequestClose={ () => this.toggleModal() }
+                        >
+                        <View style={ styles.modal }>
+                            <Rating
+                            imageSize={30}
+                            showRating
+                            fractions={1}
+                            startingValue={3.3}
+                            onFinishRating={this.ratingCompleted}
                             />
-                        }
-                        style={{paddingBottom: 30}}
-                        onChangeText={(text) => this.setState({author: text})}
-                        />
-                        <Input
-                        placeholder='Comment'
-                        leftIcon={
-                            <Icon
-                            name='comment-o'
-                            type='font-awesome'
-                            size={24}
-                            color='black'
+
+                            <View>
+                            <Input
+                                placeholder=' Author'
+                                onChangeText={(value) => this.setState({ author: value })}
+                                leftIcon={{ type: 'font-awesome', name: 'user-o' }}
                             />
-                        }
-                        style={{paddingBottom: 30}}
-                        onChangeText={(text) => this.setState({comment: text})}
-                        />
-                        <View style={{marginTop: 40}}>
-                        <Button 
-                            onPress={() => this.postCommentAndRating()}
-                            color='#512DA8'
-                            title='Submit'
-                        />
+                            </View>
+
+                            <View>
+                            <Input
+                                placeholder=' Comment'
+                                onChangeText={ (value) => this.setState({ comment: value }) }
+                                leftIcon={{ type: 'font-awesome', name: 'comment-o' }}
+                            />
+                            </View>
+
+                            <View style={ styles.buttons }>
+                            <View style={{ margin: 10 }}>
+                                <Button
+                                onPress={ () => {
+                                    this.handleComment();
+                                    this.resetForm();
+                                } }
+                                color="#512DA8"
+                                title="Submit"
+                                />
+                            </View>
+
+                            <View style={{ margin: 10 }}>
+                                <Button
+                                onPress={ () => {
+                                    this.toggleModal();
+                                    this.resetForm();
+                                } }
+                                color="gray"
+                                title="Cancel"
+                                />
+                            </View>
+                            </View>
+
                         </View>
-                        <View style={{marginTop: 20}}>
-                        <Button 
-                            onPress={() => this.state.toggleModal()}
-                            color='grey'
-                            title='Cancel'
-                        />
-                        </View>
-                    </View>
-                    </Modal>
+                        </Modal>
                 </ScrollView>
             </ScrollView>
         );
