@@ -1,10 +1,10 @@
 {
-  "name": "git-test",
+  "name": "node-examples",
   "version": "1.0.0",
-  "description": "test dir to learn git and node",
+  "description": "Simple node examples",
   "main": "index.html",
   "scripts": {
-    "start": "npm run lite",
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lite": "lite-server"
   },
@@ -22,11 +22,5 @@
     "lite-server": "^2.5.3"
   },
   "dependencies": {
-    "bootstrap-social": "^5.1.1",
-    "font-awesome": "^4.7.0",
-    "react-redux": "^5.0.7",
-    "react-redux-form": "^1.16.8",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2"
   }
 }
