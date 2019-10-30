@@ -1,26 +1,12 @@
 {
-  "name": "node-examples",
+  "name": "node-http",
   "version": "1.0.0",
-  "description": "Simple node examples",
-  "main": "index.html",
+  "description": "Node HTTP Module Example",
+  "main": "index.js",
   "scripts": {
-    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lite": "lite-server"
+    "start": "node index"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/utkarsh2794/react-full-stack.git"
-  },
-  "author": "Utkarsh Singh",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/utkarsh2794/react-full-stack/issues"
-  },
-  "homepage": "https://github.com/utkarsh2794/react-full-stack#readme",
-  "devDependencies": {
-    "lite-server": "^2.5.3"
-  },
-  "dependencies": {
-  }
+  "author": "Jogesh Muppala",
+  "license": "ISC"
 }
